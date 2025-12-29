@@ -1,0 +1,14 @@
+// Elegant Theme - Main Entry Point
+// Modern tech aesthetic with sophisticated design
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Theme Variables
+@import "variables";
+
+// Bootstrap Framework
+@import '~bootstrap/scss/bootstrap';
+
+// Theme Styles
+@import "elegant";

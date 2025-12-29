@@ -1,0 +1,45 @@
+{
+  "name": "@hashtagcms/themes",
+  "version": "1.0.0",
+  "author": {
+    "name": "Marghoob Suleman",
+    "email": "marghoobsuleman@gmail.com",
+    "url": "https://github.com/marghoobsuleman"
+  },
+  "description": "Frontend Themes and Core Logic for HashtagCMS",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marghoobsuleman/cms-frontend-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marghoobsuleman/cms-frontend-kit/issues"
+  },
+  "homepage": "https://github.com/marghoobsuleman/cms-frontend-kit#readme",
+  "main": "src/core/js/index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --progress --color",
+    "prod": "webpack --mode production --progress --color",
+    "build": "npm run prod",
+    "watch": "webpack --mode development --watch --progress --color"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "babel-loader": "^9.1.0",
+    "css-loader": "^6.8.0",
+    "mini-css-extract-plugin": "^2.7.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "sass": "^1.69.0",
+    "sass-loader": "^13.3.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.8.0",
+    "bootstrap": "^5.3.3"
+  }
+}
