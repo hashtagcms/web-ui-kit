@@ -80,6 +80,56 @@ async function run() {
             console.log(chalk.green(`\nSuccess! Assets for '${answers.theme}' copied to ${answers.destination}/${answers.theme}`));
         }
 
+        // Ask about copying views
+        const viewQuestions = [
+            {
+                type: 'confirm',
+                name: 'copyViews',
+                message: 'Do you also want to publish the theme templates (views)?',
+                default: false,
+            },
+            {
+                type: 'input',
+                name: 'viewDestination',
+                message: 'Where should the views be stored?',
+                default: './resources/views/fe',
+                when: (answers) => answers.copyViews,
+            },
+        ];
+
+        const viewAnswers = await inquirer.prompt(viewQuestions);
+
+        if (viewAnswers.copyViews) {
+            const viewsSrc = path.join(selectedThemePath, 'views');
+            const viewsDest = path.resolve(process.cwd(), viewAnswers.viewDestination, answers.theme);
+
+            if (await fs.pathExists(viewsSrc)) {
+
+                // Check for overwrite
+                let shouldCopy = true;
+                if (await fs.pathExists(viewsDest)) {
+                    const overwriteAnswer = await inquirer.prompt([{
+                        type: 'confirm',
+                        name: 'overwrite',
+                        message: `Views folder already exists at ${viewsDest}. Overwrite?`,
+                        default: false,
+                    }]);
+                    shouldCopy = overwriteAnswer.overwrite;
+                }
+
+                if (shouldCopy) {
+                    console.log(chalk.blue(`Copying views...`));
+                    await fs.copy(viewsSrc, viewsDest);
+                    console.log(chalk.green(`\nSuccess! Views copied to ${viewAnswers.viewDestination}/${answers.theme}`));
+                } else {
+                    console.log(chalk.yellow('Skipped copying views.'));
+                }
+
+            } else {
+                console.warn(chalk.yellow(`No 'views' folder found in theme '${answers.theme}'.`));
+            }
+        }
+
     } catch (error) {
         console.error(chalk.red('Error copying assets:'), error);
         process.exit(1);
