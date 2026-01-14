@@ -7,7 +7,7 @@ This guide walks you through creating a custom theme for HashtagCMS.
 ### 1. Create Theme Directory Structure
 
 ```bash
-cd packages-themes
+cd cms-frontend-kit
 mkdir -p src/themes/my-theme/{js,sass,img,fonts}
 ```
 

@@ -1,20 +1,19 @@
 {
   "name": "@hashtagcms/themes",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": {
-    "name": "Marghoob Suleman",
-    "email": "marghoobsuleman@gmail.com",
-    "url": "https://github.com/marghoobsuleman"
+    "name": "HashtagCMS",
+    "url": "https://github.com/hashtagcms"
   },
   "description": "Frontend Themes and Core Logic for HashtagCMS",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marghoobsuleman/cms-frontend-kit.git"
+    "url": "git+https://github.com/hashtagcms/cms-frontend-kit.git"
   },
   "bugs": {
-    "url": "https://github.com/marghoobsuleman/cms-frontend-kit/issues"
+    "url": "https://github.com/hashtagcms/cms-frontend-kit/issues"
   },
-  "homepage": "https://github.com/marghoobsuleman/cms-frontend-kit#readme",
+  "homepage": "https://github.com/hashtagcms/cms-frontend-kit#readme",
   "main": "src/core/js/index.js",
   "bin": "./bin/cli.js",
   "files": [

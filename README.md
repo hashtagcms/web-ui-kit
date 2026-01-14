@@ -141,13 +141,13 @@ We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md)
 
 ## 📄 License
 
-[MIT](LICENSE) © Marghoob Suleman
+[MIT](LICENSE) © HashtagCMS
 
 ## 🆘 Support
 
 - 📖 [Documentation](./docs/GETTING_STARTED.md)
-- 💬 [GitHub Discussions](https://github.com/marghoobsuleman/hashtagcms-themes/discussions)
-- 🐛 [Report Issues](https://github.com/marghoobsuleman/hashtagcms-themes/issues)
+- 💬 [GitHub Discussions](https://github.com/hashtagcms/cms-frontend-kit/discussions)
+- 🐛 [Report Issues](https://github.com/hashtagcms/cms-frontend-kit/issues)
 
 ## 🌟 Showcase
 
