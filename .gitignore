@@ -30,3 +30,7 @@ coverage/
 # Temporary Files
 tmp/
 temp/
+
+# AI Summaries
+summaries
+.antigravity/

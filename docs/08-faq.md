@@ -41,10 +41,10 @@ $secondary-color: #your-color;
 
 ### Q: Can I use only parts of a theme?
 
-**A:** Yes! Import specific components:
+**A:** Yes! Import specific components from the SDK:
 ```javascript
-// Import only the subscribe component
-import Subscribe from '@hashtagcms/web-ui-kit/src/core/js/components/subscribe';
+// Import only the form submitter component
+import { FormSubmitter } from '@hashtagcms/web-sdk';
 ```
 
 ### Q: How do I add custom fonts?
@@ -225,7 +225,7 @@ See [Contributing Guidelines](../CONTRIBUTING.md).
 
 **A:** Yes! The MIT license allows commercial use.
 
-### Q: Do I need to credit HashtagCMS?
+### Q: Do I need to credit HashtagCms?
 
 **A:** Not required, but appreciated!
 
@@ -303,7 +303,7 @@ npm list @hashtagcms/web-ui-kit
 
 ### Q: Can I hire someone to customize a theme?
 
-**A:** Check the HashtagCMS community for developers offering customization services.
+**A:** Check the HashtagCms community for developers offering customization services.
 
 ---
 

@@ -1,6 +1,6 @@
 # Getting Started with @hashtagcms/web-ui-kit
 
-Welcome! This guide will help you get started with using and creating themes for the **Blade/PHP (Laravel)** ecosystem of HashtagCMS.
+Welcome! This guide will help you get started with using and creating themes for the **Blade/PHP (Laravel)** ecosystem of HashtagCms.
 
 > [!TIP]
 > For Java developers, please check `@hashtagcms/theme-java`.
@@ -11,7 +11,20 @@ Welcome! This guide will help you get started with using and creating themes for
 npm install @hashtagcms/web-ui-kit
 ```
 
-## 🎨 Using an Existing Theme
+## 🚀 Quick Setup (CLI Installer)
+
+The easiest way to get started is using our built-in CLI tool to copy theme assets and views directly into your project:
+
+```bash
+npx web-ui-kit
+```
+
+This will guide you through:
+1.  **Selecting a theme** (Basic or Elegant)
+2.  **Asset destination** (Default: `./resources/assets/fe`)
+3.  **View destination** (Default: `./resources/views/fe`)
+
+## 🎨 Using an Existing Theme manually
 
 ### Option 1: Import Source Files (Recommended for Customization)
 

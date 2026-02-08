@@ -1,11 +1,11 @@
 {
   "name": "@hashtagcms/web-ui-kit",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": {
-    "name": "HashtagCMS",
+    "name": "HashtagCms",
     "url": "https://github.com/hashtagcms"
   },
-  "description": "Laravel Frontend Themes and Core Logic for HashtagCMS",
+  "description": "Premium Laravel Frontend Themes and UI Components for HashtagCms",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hashtagcms/web-ui-kit.git"
@@ -22,7 +22,8 @@
   },
   "files": [
     "src",
-    "bin"
+    "bin",
+    "dist"
   ],
   "scripts": {
     "test": "jest",
@@ -47,7 +48,7 @@
     "webpack-cli": "^5.1.0"
   },
   "dependencies": {
-    "@hashtagcms/web-sdk": "^1.0.2",
+    "@hashtagcms/web-sdk": "^1.0.3",
     "axios": "^1.8.0",
     "bootstrap": "^5.3.3",
     "chalk": "^4.1.2",

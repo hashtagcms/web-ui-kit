@@ -1,11 +1,11 @@
 # @hashtagcms/web-ui-kit (Laravel/Blade)
 
-> Frontend Themes and UI components for the HashtagCMS ecosystem
+> Frontend Themes and UI components for the HashtagCms ecosystem
 
 [![npm version](https://img.shields.io/npm/v/@hashtagcms/web-ui-kit.svg)](https://www.npmjs.com/package/@hashtagcms/web-ui-kit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-This package contains frontend themes specifically designed for the **Blade/PHP (Laravel)** ecosystem of HashtagCMS. It uses the core functionality provided by `@hashtagcms/web-sdk` to share underlying logic across different designs.
+This package contains frontend themes specifically designed for the **Blade/PHP (Laravel)** ecosystem of HashtagCms. It uses the core functionality provided by `@hashtagcms/web-sdk` to share underlying logic across different designs.
 
 > **Target Platform**: PHP / Laravel
 
@@ -52,11 +52,11 @@ import '@hashtagcms/web-ui-kit/src/themes/basic/js/app';
 
 ### 💻 CLI Usage
 
-You can interactive copy assets (fonts, images, vendor files) from a theme to your project using the CLI.
+You can interactively copy assets (fonts, images, vendor files) and **templates (views)** from a theme to your project using the CLI.
 
 ```bash
 # Run the interactive setup
-npx @hashtagcms/web-ui-kit init
+npx web-ui-kit
 ```
 
 The CLI will ask you:
@@ -156,7 +156,7 @@ npm run test
 
 ## 📄 License
 
-[MIT](LICENSE) © HashtagCMS
+[MIT](LICENSE) © HashtagCms
 
 ## 🆘 Support
 
@@ -170,4 +170,4 @@ Using @hashtagcms/web-ui-kit in your project? We'd love to feature it! Open an i
 
 ---
 
-Made with ❤️ by the HashtagCMS team
+Made with ❤️ by the HashtagCms team

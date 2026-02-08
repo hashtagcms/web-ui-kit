@@ -1,6 +1,6 @@
 # Creating a New Theme
 
-This guide walks you through creating a custom theme for HashtagCMS.
+This guide walks you through creating a custom theme for HashtagCms.
 
 ## 🎨 Quick Start
 
@@ -29,9 +29,7 @@ src/themes/my-theme/
 **File:** `src/themes/my-theme/js/app.js`
 
 ```javascript
-import '../../../core/js/utils/analytics';
-import Subscribe from '../../../core/js/components/subscribe';
-import AppConfig from '../../../core/js/helpers/common';
+import { Analytics, FormSubmitter, AppConfig } from '@hashtagcms/web-sdk';
 
 /**
  * My Theme - Custom Theme
@@ -44,10 +42,9 @@ class MyTheme {
     }
 
     initSubscribe() {
-        const subscribeElement = document.getElementById('subscribe-form');
-        if (subscribeElement) {
-            new Subscribe(subscribeElement);
-        }
+        const form = new FormSubmitter({
+            form: '#subscribe-form'
+        });
     }
 
     initCustomFeatures() {
@@ -235,10 +232,10 @@ Your compiled theme will be available at:
 
 ### 1. Use Shared Core Components
 
-Leverage the shared components from `src/core/js/`:
-- `components/subscribe.js` - Newsletter subscription
-- `helpers/common.js` - Common utilities
-- `utils/analytics.js` - Analytics tracking
+Leverage the shared components from `@hashtagcms/web-sdk`:
+- `FormSubmitter` - Newsletter subscription and form handling
+- `AppConfig` - Configuration management
+- `Analytics` - Tracking and telemetry
 
 ### 2. Follow Naming Conventions
 
@@ -309,7 +306,7 @@ Create a test HTML file:
     <section class="hero">
         <div class="container">
             <h1>Welcome to My Theme</h1>
-            <p>A beautiful custom theme for HashtagCMS</p>
+            <p>A beautiful custom theme for HashtagCms</p>
         </div>
     </section>
 

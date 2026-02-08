@@ -67,7 +67,7 @@ src/themes/[theme-name]/
 
 ```javascript
 // Import shared core components from @hashtagcms/web-sdk
-import { Analytics, Subscribe, AppConfig } from '@hashtagcms/web-sdk';
+import { Analytics, FormSubmitter, AppConfig } from '@hashtagcms/web-sdk';
 
 // Theme-specific class
 class ThemeName {
@@ -144,35 +144,28 @@ body { ... }
 
 Shared logic and components are now managed in the `@hashtagcms/web-sdk` package.
 
-#### Subscribe Component
-Handles newsletter subscription forms.
+#### FormSubmitter (Newsletter) Component
+Handles newsletter subscription forms and general form submissions.
 
 **Usage:**
 ```javascript
-import { Subscribe } from '@hashtagcms/web-sdk';
+import { FormSubmitter } from '@hashtagcms/web-sdk';
 
-const subscribe = new Subscribe();
+const form = new FormSubmitter({
+    form: '#subscribe-form',
+    submitUrl: '/common/newsletter'
+});
 ```
 
-**HTML:**
-```html
-<form id="subscribe-form">
-    <input type="email" placeholder="Enter your email" required>
-    <button type="submit">Subscribe</button>
-</form>
-```
-
-#### Form Helper
-**File:** `form.js`
-
-Provides form validation and submission utilities.
+#### Form Validation
+Form validation is now handled by the `FormValidator` module within the Web SDK or automatically via the `FormSubmitter` class.
 
 **Usage:**
 ```javascript
-import { Form } from '../../../core/js/helpers/form';
+import { FormValidator } from '@hashtagcms/web-sdk';
 
-const form = new Form('#my-form');
-form.validate();
+const validator = new FormValidator('#my-form');
+validator.validate();
 ```
 
 ### Shared Utilities
@@ -180,14 +173,18 @@ form.validate();
 Located in `src/core/js/utils/`:
 
 #### Analytics
-**File:** `analytics.js`
-
-Tracks user interactions and page views.
+Standardized tracking for HashtagCms and Google Analytics.
 
 **Usage:**
 ```javascript
-import '../../../core/js/utils/analytics';
-// Automatically tracks page views
+import { Analytics } from '@hashtagcms/web-sdk';
+const analytics = new Analytics();
+
+// Track CMS page
+analytics.trackCmsPage({ categoryId: 1 });
+
+// Track URL (Master method)
+analytics.trackPageView('/home');
 ```
 
 ### Shared Helpers
@@ -249,7 +246,7 @@ dist/
 ```json
 {
   "name": "@hashtagcms/web-ui-kit",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "main": "dist/themes/basic/app.js",
   "files": [
     "dist",
@@ -262,6 +259,7 @@ dist/
     "watch": "webpack --mode development --watch --progress --color"
   },
   "dependencies": {
+    "@hashtagcms/web-sdk": "^1.0.3",
     "axios": "^1.8.0",
     "bootstrap": "^5.3.3"
   },

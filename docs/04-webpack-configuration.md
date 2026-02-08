@@ -20,42 +20,35 @@ The `webpack.config.js` file handles:
 const path = require('path');
 const fs = require('fs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 // ============================================
 // 1. THEME DISCOVERY
 // ============================================
-// Automatically find all themes in src/themes/
-const themesDir = path.join(__dirname, 'src/themes');
-const themes = fs.readdirSync(themesDir).filter(file => {
-    return fs.statSync(path.join(themesDir, file)).isDirectory();
-});
+// Automatically find all themes
+const themesDir = path.resolve(__dirname, 'src/themes');
+const getEntries = () => {
+    const entries = {};
+    if (fs.existsSync(themesDir)) {
+        const themes = fs.readdirSync(themesDir);
+        themes.forEach(theme => {
+            const themePath = path.join(themesDir, theme);
+            if (fs.statSync(themePath).isDirectory()) {
+                const jsPath = path.join(themePath, 'js/app.js');
+                const sassPath = path.join(themePath, 'sass/app.scss');
 
-console.log('Found themes:', themes);
+                const entryFiles = [];
+                if (fs.existsSync(jsPath)) entryFiles.push(jsPath);
+                if (fs.existsSync(sassPath)) entryFiles.push(sassPath);
 
-// ============================================
-// 2. CREATE ENTRIES
-// ============================================
-// Create webpack entries for each theme's JS and SCSS
-const entries = {};
-
-themes.forEach(theme => {
-    const themePath = path.join(themesDir, theme);
-    
-    // JavaScript entry
-    const jsPath = path.join(themePath, 'js/app.js');
-    if (fs.existsSync(jsPath)) {
-        entries[`themes/${theme}/app`] = `./${path.relative(__dirname, jsPath)}`;
+                if (entryFiles.length > 0) {
+                    entries[theme] = entryFiles;
+                }
+            }
+        });
     }
-    
-    // SCSS entry
-    const scssPath = path.join(themePath, 'sass/app.scss');
-    if (fs.existsSync(scssPath)) {
-        entries[`themes/${theme}/app`] = `./${path.relative(__dirname, scssPath)}`;
-    }
-});
-
-console.log('Entries:', entries);
+    return entries;
+};
 
 // ============================================
 // 3. WEBPACK CONFIGURATION
@@ -65,13 +58,11 @@ module.exports = {
     mode: process.env.NODE_ENV || 'development',
     
     // Entry points
-    entry: entries,
-    
-    // Output configuration
+    entry: getEntries(),
     output: {
-        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
-        clean: true  // Clean dist folder before build
+        filename: 'themes/[name]/app.js',
+        clean: true
     },
     
     // Module rules (loaders)
@@ -126,25 +117,18 @@ module.exports = {
                 ]
             },
             
-            // ============================================
-            // Image Rule (if processing images)
-            // ============================================
             {
-                test: /\.(png|jpg|jpeg|gif|svg)$/i,
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'themes/[path][name][ext]'
+                    filename: 'themes/[name]/assets/[hash][ext][query]'
                 }
             },
-            
-            // ============================================
-            // Font Rule (if processing fonts)
-            // ============================================
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'themes/[path][name][ext]'
+                    filename: 'themes/fonts/[name][ext][query]'
                 }
             }
         ]
@@ -156,13 +140,12 @@ module.exports = {
     plugins: [
         // Extract CSS to separate files
         new MiniCssExtractPlugin({
-            filename: '[name].css'
+            filename: 'themes/[name]/app.css'
         }),
         
         // Copy static assets (images, fonts)
-        new CopyWebpackPlugin({
+        new CopyPlugin({
             patterns: [
-                // Copy theme images
                 {
                     from: 'src/themes/*/img/**/*',
                     to: ({ context, absoluteFilename }) => {
@@ -172,7 +155,6 @@ module.exports = {
                     },
                     noErrorOnMissing: true
                 },
-                // Copy theme fonts
                 {
                     from: 'src/themes/*/fonts/**/*',
                     to: ({ context, absoluteFilename }) => {
@@ -182,19 +164,15 @@ module.exports = {
                     },
                     noErrorOnMissing: true
                 }
-            ]
-        })
+            ],
+        }),
     ],
     
     // ============================================
     // Resolve Configuration
     // ============================================
     resolve: {
-        extensions: ['.js', '.jsx', '.scss', '.css'],
-        alias: {
-            '@core': path.resolve(__dirname, 'src/core'),
-            '@themes': path.resolve(__dirname, 'src/themes')
-        }
+        extensions: ['.js', '.json', '.scss']
     },
     
     // ============================================

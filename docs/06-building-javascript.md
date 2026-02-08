@@ -16,7 +16,7 @@ src/themes/my-theme/
 
 ```javascript
 // Import shared core components from @hashtagcms/web-sdk
-import { Analytics, Subscribe, AppConfig } from '@hashtagcms/web-sdk';
+import { Analytics, FormSubmitter, AppConfig } from '@hashtagcms/web-sdk';
 
 /**
  * My Theme JavaScript
@@ -32,17 +32,16 @@ class MyTheme {
      * Initialize shared components
      */
     initComponents() {
-        // Initialize subscribe form
-        const subscribeElement = document.getElementById('subscribe-form');
-        if (subscribeElement) {
-            new Subscribe({ element: subscribeElement });
-        }
+        // Initialize form submitter
+        this.contactForm = new FormSubmitter({ 
+            form: '#subscribe-form' 
+        });
 
         // Initialize app config
-        window.AppConfig = new AppConfig();
+        window.HashtagCms.AppConfig = new AppConfig();
 
         // Initialize analytics
-        new Analytics();
+        window.HashtagCms.Analytics = new Analytics();
     }
 
     /**
@@ -100,17 +99,24 @@ const themes = fs.readdirSync(themesDir).filter(file => {
 // Create entries for each theme
 const entries = {};
 themes.forEach(theme => {
+    // We create a combined entry for each theme
+    const entryFiles = [];
     const jsPath = path.join(themesDir, theme, 'js/app.js');
-    if (fs.existsSync(jsPath)) {
-        entries[`themes/${theme}/app`] = `./${path.relative(__dirname, jsPath)}`;
+    const sassPath = path.join(themesDir, theme, 'sass/app.scss');
+    
+    if (fs.existsSync(jsPath)) entryFiles.push(jsPath);
+    if (fs.existsSync(sassPath)) entryFiles.push(sassPath);
+
+    if (entryFiles.length > 0) {
+        entries[theme] = entryFiles;
     }
 });
 
 module.exports = {
     entry: entries,
     output: {
-        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
+        filename: 'themes/[name]/app.js',
     },
     module: {
         rules: [
@@ -162,11 +168,13 @@ dist/
 
 ### Available Core Components (via @hashtagcms/web-sdk)
 
-#### 1. Subscribe Component
+#### 1. FormSubmitter (replaces Subscribe)
 ```javascript
-import { Subscribe } from '@hashtagcms/web-sdk';
+import { FormSubmitter } from '@hashtagcms/web-sdk';
 
-const subscribe = new Subscribe();
+const form = new FormSubmitter({
+    form: '#subscribe-form'
+});
 ```
 
 #### 2. AppConfig
@@ -180,8 +188,11 @@ const config = new AppConfig({
 
 #### 4. Analytics
 ```javascript
-import '@hashtagcms/web-ui-kit/src/core/js/utils/analytics';
-// Automatically tracks page views
+import { Analytics } from '@hashtagcms/web-sdk';
+const analytics = new Analytics();
+
+// Track CMS page
+analytics.trackCmsPage({ categoryId: 1 });
 ```
 
 ## 🎨 Advanced JavaScript Features

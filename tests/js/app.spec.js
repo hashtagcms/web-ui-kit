@@ -1,11 +1,11 @@
 /**
  * @jest-environment jsdom
  */
-import { Newsletter, Analytics, AppConfig } from "@hashtagcms/web-sdk";
+import { FormSubmitter, Analytics, AppConfig } from "@hashtagcms/web-sdk";
 
 // Mock the web-sdk modules
 jest.mock("@hashtagcms/web-sdk", () => ({
-    Newsletter: jest.fn(),
+    FormSubmitter: jest.fn(),
     Analytics: jest.fn(),
     AppConfig: jest.fn()
 }));
@@ -30,16 +30,17 @@ describe('Basic Theme App Initialization', () => {
         expect(window.HashtagCms.configData).toEqual({});
 
         // Check Components initialization
-        expect(Newsletter).toHaveBeenCalled();
+        expect(FormSubmitter).toHaveBeenCalled();
         expect(Analytics).toHaveBeenCalled();
         expect(AppConfig).toHaveBeenCalled();
 
         // Check property assignment
-        expect(window.HashtagCms.Newsletter).toBeInstanceOf(Newsletter);
+        expect(window.HashtagCms.FormSubmitter).toBeInstanceOf(FormSubmitter);
         expect(window.HashtagCms.Analytics).toBeInstanceOf(Analytics);
         expect(window.HashtagCms.AppConfig).toBeInstanceOf(AppConfig);
         
-        // Check legacy alias
-        expect(window.HashtagCms.Subscribe).toBe(window.HashtagCms.Newsletter);
+        // Check legacy aliases
+        expect(window.HashtagCms.Newsletter).toBe(window.HashtagCms.FormSubmitter);
+        expect(window.HashtagCms.Subscribe).toBe(window.HashtagCms.FormSubmitter);
     });
 });

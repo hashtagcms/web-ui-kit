@@ -1,4 +1,4 @@
-# Contributing to HashtagCMS Themes
+# Contributing to HashtagCms Themes
 
 We welcome contributions! Whether you're fixing a bug in the core logic or designing a brand new theme.
 
@@ -16,7 +16,7 @@ If you want to contribute a new theme:
 
 ## 🧪 Testing
 
-Currently, this package is tested by linking it to a local HashtagCMS project.
+Currently, this package is tested by linking it to a local HashtagCms project.
 ```bash
 npm link
 # In your project

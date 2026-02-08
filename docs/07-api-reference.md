@@ -4,162 +4,108 @@ Complete API reference for @hashtagcms/web-ui-kit components and utilities.
 
 ## Core Components
 
-### Subscribe Component
+### FormSubmitter (Newsletter) Component
 
-Newsletter subscription form handler.
-
-**Package:** `@hashtagcms/web-sdk`
-
-#### Constructor
-
-```javascript
-new Subscribe()
-```
-
-**Example:**
-```javascript
-import { Subscribe } from '@hashtagcms/web-sdk';
-
-const subscribe = new Subscribe();
-```
-
-#### Methods
-
-##### `handleSubmit(event)`
-Handles form submission.
-
-**Parameters:**
-- `event` (Event) - Submit event
-
-**Returns:** `Promise<void>`
-
-**Example:**
-```javascript
-subscribe.handleSubmit(event);
-```
-
-##### `validate()`
-Validates form inputs.
-
-**Returns:** `boolean`
-
-**Example:**
-```javascript
-if (subscribe.validate()) {
-    // Form is valid
-}
-```
-
-#### HTML Structure
-
-```html
-<form id="subscribe-form">
-    <input type="email" name="email" placeholder="Enter your email" required>
-    <button type="submit">Subscribe</button>
-</form>
-```
-
-### AppConfig
-
-Application configuration manager.
+Standard form submission handler with built-in validation.
 
 **Package:** `@hashtagcms/web-sdk`
 
 #### Constructor
 
 ```javascript
-new AppConfig(config)
+new FormSubmitter(options)
 ```
 
-**Parameters:**
-- `config` (Object) - Configuration object (optional)
+**Options:**
+- `form` (string|HTMLElement) - Form element selector
+- `submitUrl` (string) - API endpoint (default: `/common/newsletter`)
+- `onSuccess` (function) - Success callback
+- `onError` (function) - Error callback
 
 **Example:**
 ```javascript
-import { AppConfig } from '@hashtagcms/web-sdk';
+import { FormSubmitter } from '@hashtagcms/web-sdk';
 
-const config = new AppConfig({
-    apiUrl: 'https://api.example.com',
-    debug: true
+const form = new FormSubmitter({
+    form: '#newsletter-form',
+    onSuccess: (data) => console.log('Subscribed!', data)
 });
 ```
 
 #### Methods
 
-##### `get(key)`
-Gets configuration value.
+##### `submit()`
+Programmatically triggers form submission.
+
+**Returns:** `Promise<any>`
+
+##### `validator.validate()`
+Access the internal validator manually.
+
+**Returns:** `boolean`
+
+### AppConfig
+
+Centralized configuration manager supporting dot-notation.
+
+**Package:** `@hashtagcms/web-sdk`
+
+#### Constructor
+
+```javascript
+new AppConfig(configData)
+```
+
+#### Methods
+
+##### `getValue(key, defaultValue?)`
+Retrieves a configuration value. Supports **dot notation** for nested keys.
 
 **Parameters:**
-- `key` (string) - Configuration key
+- `key` (string) - Configuration key (e.g., `'site.name'`)
+- `defaultValue` (any) - Value to return if key is missing
 
 **Returns:** `any`
 
 **Example:**
 ```javascript
-const apiUrl = config.get('apiUrl');
-```
-
-##### `set(key, value)`
-Sets configuration value.
-
-**Parameters:**
-- `key` (string) - Configuration key
-- `value` (any) - Configuration value
-
-**Returns:** `void`
-
-**Example:**
-```javascript
-config.set('apiUrl', 'https://new-api.example.com');
+const siteName = config.getValue('site.name', 'Default Site');
 ```
 
 ---
 
 ### Analytics
 
-Page view and event tracking.
+Multi-tier tracking system for HashtagCms and Third-party collectors.
 
 **Package:** `@hashtagcms/web-sdk`
 
-#### Initialization
-
-```javascript
-import { Analytics } from '@hashtagcms/web-sdk';
-const analytics = new Analytics();
-```
-
 #### Methods
 
-##### `trackPageView(page)`
-Tracks a page view.
+##### `trackPageView(url, callback?)`
+**Master Method**. Tracks a page view across all configured systems (GA, Custom Callbacks).
 
 **Parameters:**
-- `page` (string) - Page path
-
-**Returns:** `void`
+- `url` (string) - Page URL to track
 
 **Example:**
 ```javascript
-analytics.trackPageView('/about');
+analytics.trackPageView('/products/list');
 ```
 
-##### `trackEvent(category, action, label, value)`
-Tracks a custom event.
+##### `trackCmsPage(data, callback?)`
+**CMS Specific**. Tracks a category/page view specifically for the HashtagCms server.
 
 **Parameters:**
-- `category` (string) - Event category
-- `action` (string) - Event action
-- `label` (string) - Event label (optional)
-- `value` (number) - Event value (optional)
-
-**Returns:** `void`
+- `data` (Object) - Must contain `categoryId`.
 
 **Example:**
 ```javascript
-import { trackEvent } from '@hashtagcms/web-sdk';
-
-trackEvent('Button', 'Click', 'Subscribe', 1);
+analytics.trackCmsPage({ categoryId: 10, pageId: 200 });
 ```
+
+##### `google.trackPageView(url)`
+Directly tracks a page view in Google Analytics only.
 
 ---
 
@@ -171,8 +117,8 @@ trackEvent('Button', 'Click', 'Subscribe', 1);
 
 #### Features
 - Automatic component initialization
-- Subscribe form integration
-- Analytics tracking
+- FormSubmitter (Newsletter) integration
+- Dual-tier Analytics tracking
 
 #### Usage
 ```javascript
@@ -396,9 +342,7 @@ document.addEventListener('form:submit', (event) => {
 
 ---
 
-## TypeScript Definitions
-
-TypeScript definitions are not currently included but may be added in future versions.
+TypeScript definitions are included in `@hashtagcms/web-sdk`.
 
 ---
 

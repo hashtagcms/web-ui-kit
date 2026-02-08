@@ -35,6 +35,11 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'themes/[name]/app.js',
+        library: {
+            name: ['HashtagCmsUI', '[name]'],
+            type: 'umd',
+        },
+        globalObject: 'this',
         clean: true
     },
     module: {
