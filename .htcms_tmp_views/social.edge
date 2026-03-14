@@ -1,0 +1,12 @@
+<div class="col-6 col-md-4">
+    <h5>{{ __("hashtagcms::links.follow_us") }}</h5>
+    <div class="socials">
+        @each(social in data)
+            @let(sLabel = ucfirst(social['name']))
+@let(sCss = strtolower(social['name']))
+@let(sHref = trim(social['value']))
+
+            <a class="social social-{{ sCss }}" href="{{ sHref }}" title="{{ sLabel }}" target="_blank" rel="noopener nofollow"><i class="fa fa-{{ sCss }}"></i></a>
+        @end
+    </div>
+</div>

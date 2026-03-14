@@ -1,0 +1,427 @@
+{
+    "isLoginRequired": false,
+    "isContentFound": true,
+    "totalModules": 7,
+    "html": {
+        "head": {
+            "headerContent": [
+                {
+                    "order": 1,
+                    "html": "<meta name=\"generator\" name=\"#CMS (https://www.hashtagcms.org/)\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=9; IE=8; IE=7; IE=EDGE; chrome=1\"/>\n\n<link rel=\"stylesheet\" href=\"/assets/hashtagcms/fe/modern/css/app.css\" />"
+                }
+            ],
+            "title": "Home",
+            "meta": {
+                "metaCanonical": null,
+                "metaDescription": null,
+                "metaKeywords": null,
+                "metaRobots": "index, follow",
+                "metaTitle": "Home"
+            },
+            "links": [
+                {
+                    "rel": "shortcut icon",
+                    "href": "/assets/hashtagcms/fe/modern/img/favicon.png"
+                }
+            ]
+        },
+        "body": {
+            "content": {
+                "skeleton": "<div id=\"app\" >\n<div>\n        %{cms.hook.HOOK_HEADER}%\n</div>\n<main class=\"modern-theme\">\n    <div class=\"content-wrapper oh\">\n        %{cms.hook.HOOK_ONE_COLUMN}%\n    </div>\n</main>\n<div class=\"footer clearfix\">\n        %{cms.hook.HOOK_FOOTER}%\n</div>\n\n</div>"
+            },
+            "footer": {
+                "footerContent": [
+                    {
+                        "order": 1,
+                        "html": "<script src=\"/assets/hashtagcms/fe/modern/js/app.js\"></script>"
+                    }
+                ]
+            }
+        }
+    },
+    "meta": {
+        "site": {
+            "id": 1,
+            "name": "Hashtag CMS",
+            "title": "Welcome to #CMS",
+            "categoryId": 1,
+            "themeId": 1,
+            "platformId": 1,
+            "langId": 1,
+            "countryId": 110,
+            "currencyId": 1,
+            "underMaintenance": 0,
+            "domain": "http://packages.testing:8003",
+            "context": "procms",
+            "favicon": "",
+            "langCount": 2
+        },
+        "platform": {
+            "id": 1,
+            "name": "Desktop",
+            "linkRewrite": "web"
+        },
+        "lang": {
+            "id": 1,
+            "name": "English",
+            "isoCode": "en",
+            "languageCode": "en",
+            "dateFormatLite": "Y-m-d",
+            "dateFormatFull": "y-m-d H:i:s",
+            "isRtl": 0
+        },
+        "category": {
+            "id": 1,
+            "parentId": null,
+            "siteId": 1,
+            "isSiteDefault": 0,
+            "isRootCategory": 1,
+            "isNew": 0,
+            "hasWap": 0,
+            "wapUrl": null,
+            "linkRewrite": "/",
+            "linkNavigation": null,
+            "linkRewritePattern": null,
+            "controllerName": null,
+            "hasSomeSpecialModule": 0,
+            "specialModuleAlias": null,
+            "requiredLogin": 0,
+            "insertBy": 1,
+            "updateBy": 1,
+            "publishStatus": 1,
+            "readCount": 21,
+            "name": "Home",
+            "title": "Home",
+            "excerpt": "home excerpt...",
+            "content": "content home...",
+            "activeKey": "home",
+            "thirdPartyMappingKey": null,
+            "b2bMapping": null,
+            "isExternal": 0,
+            "linkRelation": null,
+            "target": null,
+            "metaTitle": null,
+            "metaKeywords": null,
+            "metaDescription": null,
+            "metaRobots": null,
+            "metaCanonical": null,
+            "icon": null,
+            "iconCss": null,
+            "headerContent": null,
+            "footerContent": null,
+            "excludeInListing": 0,
+            "position": 1,
+            "cacheCategory": null
+        },
+        "page": {
+            "id": -1,
+            "linkRewrite": "",
+            "activeKey": "",
+            "name": ""
+        },
+        "theme": {
+            "id": 1,
+            "siteId": 1,
+            "name": "Modern",
+            "alias": "MODERN",
+            "directory": "modern",
+            "bodyClass": "app-default",
+            "imgPreview": null,
+            "skeleton": "<div id=\"app\" >\n<div>\n        %{cms.hook.HOOK_HEADER}%\n</div>\n<main class=\"modern-theme\">\n    <div class=\"content-wrapper oh\">\n        %{cms.hook.HOOK_ONE_COLUMN}%\n    </div>\n</main>\n<div class=\"footer clearfix\">\n        %{cms.hook.HOOK_FOOTER}%\n</div>\n\n</div>",
+            "headerContent": "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=9; IE=8; IE=7; IE=EDGE; chrome=1\"/>\n\n<link rel=\"stylesheet\" href=\"/assets/hashtagcms/fe/modern/css/app.css\" />",
+            "footerContent": "<script src=\"/assets/hashtagcms/fe/modern/js/app.js\"></script>",
+            "hooks": [
+                {
+                    "id": 1,
+                    "name": "Header",
+                    "alias": "HOOK_HEADER",
+                    "placeholder": "%{cms.hook.HOOK_HEADER}%",
+                    "direction": "vertical",
+                    "description": "This is usually on top of the page",
+                    "modules": [
+                        {
+                            "id": 1,
+                            "siteId": 1,
+                            "name": "Header",
+                            "alias": "MODULE_HEADER",
+                            "placeholder": "%{cms.module.MODULE_HEADER}%",
+                            "linkedModule": "0",
+                            "viewName": "header",
+                            "dataType": "Query",
+                            "description": null,
+                            "isMandatory": 0,
+                            "headers": null,
+                            "individualCache": 0,
+                            "cacheGroup": null,
+                            "isSeoModule": 0,
+                            "liveEdit": 0,
+                            "shared": 0,
+                            "queryStatement": null,
+                            "queryAs": null,
+                            "dataHandler": "select c.id, c.parent_id, c.is_new, c.has_wap, c.wap_url, c.link_rewrite, c.link_navigation,\ncl.name, cl.title, cl.is_external, cs.position, cl.link_relation, cl.target, cl.active_key\nfrom categories c\nleft join category_langs cl on (cl.category_id = c.id)\nleft join category_site cs on (cs.category_id = c.id)\nwhere c.deleted_at is null and c.publish_status=1 and c.site_id=:site_id and cl.lang_id=:lang_id and cs.platform_id=:platform_id\nand cs.exclude_in_listing = 0\norder by cs.position asc",
+                            "dataKeyMap": "site_id,lang_id,platform_id",
+                            "methodType": null,
+                            "serviceParams": null,
+                            "data": [
+                                {
+                                    "id": 1,
+                                    "parent_id": null,
+                                    "is_new": 0,
+                                    "has_wap": 0,
+                                    "wap_url": null,
+                                    "link_rewrite": "/",
+                                    "link_navigation": null,
+                                    "name": "Home",
+                                    "title": "Home",
+                                    "is_external": 0,
+                                    "position": 1,
+                                    "link_relation": null,
+                                    "target": null,
+                                    "active_key": "home"
+                                },
+                                {
+                                    "id": 6,
+                                    "parent_id": null,
+                                    "is_new": 0,
+                                    "has_wap": 0,
+                                    "wap_url": null,
+                                    "link_rewrite": "example",
+                                    "link_navigation": null,
+                                    "name": "Example",
+                                    "title": "Example",
+                                    "is_external": 0,
+                                    "position": 4,
+                                    "link_relation": null,
+                                    "target": null,
+                                    "active_key": "example"
+                                },
+                                {
+                                    "id": 2,
+                                    "parent_id": null,
+                                    "is_new": 0,
+                                    "has_wap": 0,
+                                    "wap_url": null,
+                                    "link_rewrite": "blog",
+                                    "link_navigation": null,
+                                    "name": "Blog",
+                                    "title": "Find our latest blog",
+                                    "is_external": 0,
+                                    "position": 7,
+                                    "link_relation": "alternate",
+                                    "target": null,
+                                    "active_key": "blog"
+                                },
+                                {
+                                    "id": 8,
+                                    "parent_id": null,
+                                    "is_new": 0,
+                                    "has_wap": 0,
+                                    "wap_url": null,
+                                    "link_rewrite": "contact",
+                                    "link_navigation": null,
+                                    "name": "Contact",
+                                    "title": "Contact",
+                                    "is_external": 0,
+                                    "position": 8,
+                                    "link_relation": "alternate",
+                                    "target": null,
+                                    "active_key": "contact"
+                                }
+                            ],
+                            "moduleProps": []
+                        }
+                    ]
+                },
+                {
+                    "id": 10,
+                    "name": "One Column",
+                    "alias": "HOOK_ONE_COLUMN",
+                    "placeholder": "%{cms.hook.HOOK_ONE_COLUMN}%",
+                    "direction": "vertical",
+                    "description": "This is usually for one column layout",
+                    "modules": [
+                        {
+                            "id": 2,
+                            "siteId": 1,
+                            "name": "Hero",
+                            "alias": "MODULE_HERO",
+                            "placeholder": "%{cms.module.MODULE_HERO}%",
+                            "linkedModule": "0",
+                            "viewName": "hero",
+                            "dataType": "Custom",
+                            "description": null,
+                            "isMandatory": 0,
+                            "headers": null,
+                            "individualCache": 0,
+                            "cacheGroup": null,
+                            "isSeoModule": 0,
+                            "liveEdit": 0,
+                            "shared": 0,
+                            "queryStatement": null,
+                            "queryAs": null,
+                            "dataHandler": null,
+                            "dataKeyMap": null,
+                            "methodType": null,
+                            "serviceParams": null,
+                            "data": [],
+                            "moduleProps": []
+                        },
+                        {
+                            "id": 4,
+                            "siteId": 1,
+                            "name": "Products",
+                            "alias": "MODULE_PRODUCTS",
+                            "placeholder": "%{cms.module.MODULE_PRODUCTS}%",
+                            "linkedModule": "0",
+                            "viewName": "products",
+                            "dataType": "Custom",
+                            "description": null,
+                            "isMandatory": 0,
+                            "headers": null,
+                            "individualCache": 0,
+                            "cacheGroup": null,
+                            "isSeoModule": 0,
+                            "liveEdit": 0,
+                            "shared": 0,
+                            "queryStatement": null,
+                            "queryAs": null,
+                            "dataHandler": null,
+                            "dataKeyMap": null,
+                            "methodType": null,
+                            "serviceParams": null,
+                            "data": [],
+                            "moduleProps": []
+                        },
+                        {
+                            "id": 6,
+                            "siteId": 1,
+                            "name": "Our Speciality",
+                            "alias": "MODULE_OUR_SPECIALITY",
+                            "placeholder": "%{cms.module.MODULE_OUR_SPECIALITY}%",
+                            "linkedModule": "0",
+                            "viewName": "our-speciality",
+                            "dataType": "Custom",
+                            "description": null,
+                            "isMandatory": 0,
+                            "headers": null,
+                            "individualCache": 0,
+                            "cacheGroup": null,
+                            "isSeoModule": 0,
+                            "liveEdit": 0,
+                            "shared": 0,
+                            "queryStatement": null,
+                            "queryAs": null,
+                            "dataHandler": null,
+                            "dataKeyMap": null,
+                            "methodType": null,
+                            "serviceParams": null,
+                            "data": [],
+                            "moduleProps": []
+                        },
+                        {
+                            "id": 5,
+                            "siteId": 1,
+                            "name": "Seo Content",
+                            "alias": "MODULE_SEO_CONTENT",
+                            "placeholder": "%{cms.module.MODULE_SEO_CONTENT}%",
+                            "linkedModule": "0",
+                            "viewName": "seo",
+                            "dataType": "Custom",
+                            "description": null,
+                            "isMandatory": 0,
+                            "headers": null,
+                            "individualCache": 0,
+                            "cacheGroup": null,
+                            "isSeoModule": 0,
+                            "liveEdit": 0,
+                            "shared": 0,
+                            "queryStatement": null,
+                            "queryAs": null,
+                            "dataHandler": null,
+                            "dataKeyMap": null,
+                            "methodType": null,
+                            "serviceParams": null,
+                            "data": [],
+                            "moduleProps": []
+                        },
+                        {
+                            "id": 7,
+                            "siteId": 1,
+                            "name": "Subscribe",
+                            "alias": "MODULE_SUBSCRIBE",
+                            "placeholder": "%{cms.module.MODULE_SUBSCRIBE}%",
+                            "linkedModule": "0",
+                            "viewName": "subscribe",
+                            "dataType": "Custom",
+                            "description": null,
+                            "isMandatory": 0,
+                            "headers": null,
+                            "individualCache": 0,
+                            "cacheGroup": null,
+                            "isSeoModule": 0,
+                            "liveEdit": 0,
+                            "shared": 0,
+                            "queryStatement": null,
+                            "queryAs": null,
+                            "dataHandler": null,
+                            "dataKeyMap": null,
+                            "methodType": null,
+                            "serviceParams": null,
+                            "data": [],
+                            "moduleProps": []
+                        }
+                    ]
+                },
+                {
+                    "id": 9,
+                    "name": "Footer",
+                    "alias": "HOOK_FOOTER",
+                    "placeholder": "%{cms.hook.HOOK_FOOTER}%",
+                    "direction": "vertical",
+                    "description": "Footer Hook",
+                    "modules": [
+                        {
+                            "id": 9,
+                            "siteId": 1,
+                            "name": "Footer",
+                            "alias": "MODULE_FOOTER",
+                            "placeholder": "%{cms.module.MODULE_FOOTER}%",
+                            "linkedModule": "0",
+                            "viewName": "footer",
+                            "dataType": "Custom",
+                            "description": null,
+                            "isMandatory": 0,
+                            "headers": null,
+                            "individualCache": 0,
+                            "cacheGroup": null,
+                            "isSeoModule": 0,
+                            "liveEdit": 0,
+                            "shared": 0,
+                            "queryStatement": null,
+                            "queryAs": null,
+                            "dataHandler": null,
+                            "dataKeyMap": null,
+                            "methodType": null,
+                            "serviceParams": null,
+                            "data": [],
+                            "moduleProps": []
+                        }
+                    ]
+                }
+            ],
+            "modules": []
+        },
+        "props": [
+            {
+                "name": "Facebook",
+                "value": "https://www.facebook.com/hashtagcms.org",
+                "groupName": "SocialLinks"
+            },
+            {
+                "name": "Twitter",
+                "value": "https://www.twitter.com/hashtagcms",
+                "groupName": "SocialLinks"
+            }
+        ]
+    }
+}

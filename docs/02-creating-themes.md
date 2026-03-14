@@ -1,6 +1,9 @@
 # Creating a New Theme
 
-This guide walks you through creating a custom theme for HashtagCms.
+This guide walks you through creating a custom theme for HashtagCms. 
+
+> [!IMPORTANT]
+> **New Standard**: We strongly recommend using **Tailwind CSS** for new themes. All future development and support will focus on the Tailwind-based ecosystem.
 
 ## 🎨 Quick Start
 
@@ -11,340 +14,79 @@ cd web-ui-kit
 mkdir -p src/themes/my-theme/{js,sass,img,fonts}
 ```
 
-Your theme should have this structure:
+### 2. Standard Structure
+Your theme should follow this organization:
 ```
 src/themes/my-theme/
 ├── js/
 │   └── app.js          # Theme JavaScript entry point
-├── sass/
-│   ├── app.scss        # Main SCSS entry point
-│   ├── _variables.scss # Theme variables
-│   └── _my-theme.scss  # Theme styles
+├── sass/ (or css/)
+│   └── app.scss        # Main style entry point (Tailwind or SCSS)
+├── views/              # Blade templates (CRITICAL for Playground)
 ├── img/                # Theme images
 └── fonts/              # Theme fonts (optional)
 ```
 
-### 2. Create JavaScript Entry Point
+## 🧪 Testing with the Playground
 
+The **HashtagCMS Playground** is the best way to develop and test your theme. It automatically detects any directory in `src/themes` and adds it to the **Theme Switcher**.
+
+### 1. Enable your theme in Playground
+Simply ensure your theme directory exists under `src/themes/`. 
+
+### 2. View Mapping
+The playground uses `fake-data/*.json` to simulate real CMS data. It maps URLs (like `/home`) to these data files. 
+
+### 3. Theme assets
+The playground dynamically rewrites asset paths. Ensure your `views/` use the standard asset helper paths:
+```blade
+<link rel="stylesheet" href="/assets/hashtagcms/fe/{{ $theme_name }}/css/app.css" />
+```
+
+### 4. Running the Test
+```bash
+npm run playground
+# Open browser and use the Theme Switcher to select "my-theme"
+```
+
+## ⚡ Using Tailwind CSS (Recommended)
+
+When creating a Tailwind theme:
+1.  Initialize Tailwind in your theme directory or use the global project-wide Tailwind setup.
+2.  Add your theme's `views` and `js` files to the `content` array in `tailwind.config.js`.
+3.  Import Tailwind directives in your `src/themes/my-theme/sass/app.scss`.
+
+## 🏛️ Legacy SCSS Approach
+
+If you prefer using SCSS and Bootstrap (like our legacy themes):
+
+### 1. Create JavaScript Entry Point
 **File:** `src/themes/my-theme/js/app.js`
-
 ```javascript
-import { Analytics, FormSubmitter, AppConfig } from '@hashtagcms/web-sdk';
-
-/**
- * My Theme - Custom Theme
- */
-
-class MyTheme {
-    constructor() {
-        this.initSubscribe();
-        this.initCustomFeatures();
-    }
-
-    initSubscribe() {
-        const form = new FormSubmitter({
-            form: '#subscribe-form'
-        });
-    }
-
-    initCustomFeatures() {
-        // Add your custom JavaScript features here
-        console.log('My Theme initialized!');
-    }
-}
-
-// Initialize theme when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => new MyTheme());
-} else {
-    new MyTheme();
-}
+import { FormSubmitter } from '@hashtagcms/web-sdk';
+// Initialize components...
 ```
 
-### 3. Create SCSS Variables
-
-**File:** `src/themes/my-theme/sass/_variables.scss`
-
-```scss
-// My Theme Variables
-
-// Color Palette
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
-$text-color: #333333;
-$background-color: #ffffff;
-
-// Typography
-$font-primary: 'Roboto', sans-serif;
-$font-size-base: 16px;
-$line-height-base: 1.6;
-
-// Spacing
-$container-max-width: 1200px;
-$section-padding: 80px;
-
-// Bootstrap Overrides
-$body-bg: $background-color;
-$body-color: $text-color;
-$font-family-sans-serif: $font-primary;
-
-$theme-colors: (
-  "primary": $primary-color,
-  "secondary": $secondary-color
-);
-```
-
-### 4. Create Theme Styles
-
-**File:** `src/themes/my-theme/sass/_my-theme.scss`
-
-```scss
-/**
- * My Theme - Custom Styles
- */
-
-// Import Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-// Base Styles
-body {
-  font-family: $font-primary;
-  background-color: $background-color;
-  color: $text-color;
-  line-height: $line-height-base;
-}
-
-// Typography
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  color: $primary-color;
-}
-
-// Navigation
-.navbar {
-  background-color: $primary-color;
-  
-  .nav-link {
-    color: white !important;
-    
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-}
-
-// Hero Section
-.hero {
-  min-height: 500px;
-  background: linear-gradient(135deg, $primary-color, $secondary-color);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  
-  h1 {
-    color: white;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-}
-
-// Buttons
-.btn-primary {
-  background-color: $primary-color;
-  border-color: $primary-color;
-  
-  &:hover {
-    background-color: darken($primary-color, 10%);
-    border-color: darken($primary-color, 10%);
-  }
-}
-
-// Cards
-.card {
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-  }
-}
-
-// Footer
-footer {
-  background-color: #f8f9fa;
-  padding: 3rem 0;
-  margin-top: 4rem;
-}
-
-// Responsive
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-}
-```
-
-### 5. Create Main SCSS Entry Point
-
+### 2. Create SCSS Entry Point
 **File:** `src/themes/my-theme/sass/app.scss`
-
 ```scss
-// My Theme - Main Entry Point
-
-// Import Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-// Theme Variables
 @import "variables";
-
-// Theme Styles
-@import "my-theme";
-
-// Bootstrap Framework
+@import "my-theme-styles";
 @import '~bootstrap/scss/bootstrap';
 ```
 
-### 6. Add Theme Images (Optional)
-
-Place your images in `src/themes/my-theme/img/`:
-- Hero backgrounds
-- Feature images
-- Icons
-- Logos
-
-### 7. Build Your Theme
-
-The webpack configuration will automatically detect and build your new theme:
-
-```bash
-npm run build
-```
-
-Your compiled theme will be available at:
-- `dist/themes/my-theme/app.css`
-- `dist/themes/my-theme/app.js`
-- `dist/themes/my-theme/img/` (if you added images)
-
 ## 🎯 Best Practices
 
-### 1. Use Shared Core Components
-
-Leverage the shared components from `@hashtagcms/web-sdk`:
-- `FormSubmitter` - Newsletter subscription and form handling
-- `AppConfig` - Configuration management
-- `Analytics` - Tracking and telemetry
-
-### 2. Follow Naming Conventions
-
-- Use kebab-case for theme names: `my-awesome-theme`
-- Prefix custom classes with your theme name: `.my-theme-card`
-- Use semantic variable names: `$primary-color`, not `$blue`
-
-### 3. Make It Responsive
-
-Always test your theme on:
-- Mobile (< 768px)
-- Tablet (768px - 1024px)
-- Desktop (> 1024px)
-
-### 4. Optimize Assets
-
-- Compress images before adding them
-- Use SVG for icons when possible
-- Minimize custom fonts
-
-### 5. Document Your Theme
-
-Add a README in your theme directory:
-
-**File:** `src/themes/my-theme/README.md`
-
-```markdown
-# My Theme
-
-Description of your theme.
-
-## Features
-- Feature 1
-- Feature 2
-
-## Color Palette
-- Primary: #3498db
-- Secondary: #2ecc71
-
-## Usage
-\`\`\`scss
-@import "~@hashtagcms/web-ui-kit/src/themes/my-theme/sass/app";
-\`\`\`
-```
-
-## 🧪 Testing Your Theme
-
-### 1. Test Locally
-
-Create a test HTML file:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Theme Test</title>
-    <link rel="stylesheet" href="../../dist/themes/my-theme/app.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">My Theme</a>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            <h1>Welcome to My Theme</h1>
-            <p>A beautiful custom theme for HashtagCms</p>
-        </div>
-    </section>
-
-    <script src="../../dist/themes/my-theme/app.js"></script>
-</body>
-</html>
-```
-
-### 2. Check Responsiveness
-
-Test on different screen sizes using browser dev tools.
-
-### 3. Validate Accessibility
-
-- Check color contrast ratios
-- Ensure keyboard navigation works
-- Test with screen readers
+1.  **Use Shared Core Components**: Leverage `@hashtagcms/web-sdk` for forms, analytics, and config.
+2.  **Asset Pathing**: Always use the dynamic asset path pattern to ensure compatibility with both the Playground and production HashtagCMS installations.
+3.  **Modular Views**: Keep your Blade templates small and modular. Use `@include` for repeating elements like headers and footers.
 
 ## 📤 Contributing Your Theme
 
-Once your theme is ready:
+1.  **Test thoroughly** in the Playground on different simulated pages.
+2.  **Verify Asset Paths** work across different environments.
+3.  **Submit a Pull Request** with your theme directory and a brief description.
 
-1. **Test thoroughly** on different browsers and devices
-2. **Document** all features and customization options
-3. **Create a pull request** with:
-   - Theme files
-   - Documentation
-   - Screenshots/demo
-4. **Follow** the [Contributing Guidelines](../CONTRIBUTING.md)
+---
 
-## 💡 Examples
-
-Check out existing themes for reference:
-- [Basic Theme](../src/themes/basic/) - Traditional design
-- [Elegant Theme](../src/themes/elegant/) - Modern tech aesthetic
-
-## 🆘 Need Help?
-
-- Check the [FAQ](./08-faq.md)
-- Review [Theme Structure](./03-theme-structure.md)
-- Ask in [GitHub Discussions](https://github.com/hashtagcms/web-ui-kit/discussions)
+[← Back to Getting Started](./01-getting-started.md)

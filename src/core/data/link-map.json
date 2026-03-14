@@ -1,0 +1,9 @@
+{
+    "home": "fake-data/home.json",
+    "blog": "fake-data/blog-home.json",
+    "blog/test-blog": "fake-data/blog-test.json",
+    "contact": "fake-data/contact.json",
+    "example": "fake-data/example.json",
+    "login": "fake-data/login.json",
+    "register": "fake-data/register.json"
+}

@@ -57,7 +57,7 @@ describe('CLI Script', () => {
 
         // Default fs mocks
         fs.existsSync.mockReturnValue(true);
-        fs.readdir.mockResolvedValue(['basic', 'elegant']);
+        fs.readdir.mockResolvedValue(['basic', 'modern']);
         fs.stat.mockResolvedValue({ isDirectory: () => true });
         
         // Use implementations that return promises but don't log
@@ -123,7 +123,7 @@ describe('CLI Script', () => {
     it('copies views when requested', async () => {
         // Setup Answers
         inquirer.prompt.mockResolvedValueOnce({
-            theme: 'elegant',
+            theme: 'modern',
             destination: './public/assets'
         }); 
 
@@ -143,8 +143,8 @@ describe('CLI Script', () => {
         // Verify Assets Copy (4 folders) + Views Copy (1 folder)
         expect(fs.copy).toHaveBeenCalledTimes(5);
         
-        const expectedViewDest = path.resolve(mockCwd, './resources/views/fe/elegant');
-        expect(fs.copy).toHaveBeenCalledWith(expect.stringContaining('elegant/views'), expectedViewDest);
+        const expectedViewDest = path.resolve(mockCwd, './resources/views/fe/modern');
+        expect(fs.copy).toHaveBeenCalledWith(expect.stringContaining('modern/views'), expectedViewDest);
 
         expect(console.log).toHaveBeenCalledWith(expect.stringContaining('Views copied'));
     });
